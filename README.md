@@ -1,0 +1,104 @@
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=30&duration=3500&pause=1000&color=6366F1&center=true&vCenter=true&width=650&lines=Hey+%F0%9F%91%8B+I'm+Shaur;Full-Stack+%2B+AI+Developer;I+build+things+that+think;Automations+%7C+AI+%7C+Web" alt="Typing SVG" />
+
+<br/>
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-6366f1?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-iota-nine-97gumluwra.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-they--call--me--god-black?style=for-the-badge&logo=github)](https://github.com/they-call-me-god)
+
+</div>
+
+---
+
+## 🧠 About Me
+
+```python
+shaur = {
+    "role":       "Full-Stack + AI Developer",
+    "building":   ["self-learning portfolio", "AI automation pipelines", "dungeon crawlers"],
+    "stack":      ["Next.js 16", "Python", "TypeScript", "Claude API", "Vercel"],
+    "passion":    "Making software that learns, adapts, and actually ships",
+    "currently":  "Turning every project into an autonomous system",
+}
+```
+
+---
+
+## ⚡ Tech Stack
+
+**Frontend**
+
+![Next.js](https://img.shields.io/badge/Next.js_16-black?style=flat-square&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=flat-square&logo=framer&logoColor=white)
+![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=flat-square&logo=shadcnui&logoColor=white)
+
+**Backend & AI**
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat-square&logo=node.js&logoColor=white)
+![Claude API](https://img.shields.io/badge/Claude_API-D97757?style=flat-square&logo=anthropic&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini-4285F4?style=flat-square&logo=google&logoColor=white)
+![Vercel AI SDK](https://img.shields.io/badge/Vercel_AI_SDK-000?style=flat-square&logo=vercel&logoColor=white)
+
+**Data & Infra**
+
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/Neon_Postgres-00E5CC?style=flat-square&logo=postgresql&logoColor=white)
+![Redis](https://img.shields.io/badge/Upstash_Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)
+
+---
+
+## 📊 GitHub Stats
+
+<div align="center">
+
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=they-call-me-god&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=6366f1&icon_color=6366f1&text_color=ffffff"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=they-call-me-god&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&langs_count=8"/>
+
+</div>
+
+<div align="center">
+
+<img src="https://streak-stats.demolab.com?user=they-call-me-god&theme=tokyonight&hide_border=true&background=0d1117&ring=6366f1&fire=6366f1&currStreakLabel=6366f1" alt="GitHub Streak"/>
+
+</div>
+
+---
+
+## 🚀 Featured Projects
+
+<div align="center">
+
+[![abyss-protocol](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=abyss-protocol&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/abyss-protocol)
+[![portfolio](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=portfolio&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/portfolio)
+
+</div>
+
+---
+
+## 🐍 Contribution Graph
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/they-call-me-god/they-call-me-god/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/they-call-me-god/they-call-me-god/output/github-contribution-grid-snake.svg">
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/they-call-me-god/they-call-me-god/output/github-contribution-grid-snake-dark.svg">
+</picture>
+
+</div>
+
+---
+
+<div align="center">
+
+![Visitor Count](https://komarev.com/ghpvc/?username=they-call-me-god&color=6366f1&style=flat-square&label=Profile+Views)
+
+*"The best code is the code that writes itself."*
+
+</div>
