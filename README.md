@@ -54,14 +54,15 @@ shaur = {
 
 <div align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=they-call-me-god&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=6366f1&icon_color=6366f1&text_color=ffffff"/>
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=they-call-me-god&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&langs_count=8"/>
+<img src="https://github-profile-trophy.vercel.app/?username=they-call-me-god&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4&column=4" alt="GitHub Trophies"/>
 
 </div>
 
 <div align="center">
 
-<img src="https://streak-stats.demolab.com?user=they-call-me-god&theme=tokyonight&hide_border=true&background=0d1117&ring=6366f1&fire=6366f1&currStreakLabel=6366f1" alt="GitHub Streak"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=they-call-me-god&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&langs_count=6"/>
+&nbsp;
+<img height="180em" src="https://streak-stats.demolab.com?user=they-call-me-god&theme=tokyonight&hide_border=true&background=0d1117&ring=6366f1&fire=6366f1&currStreakLabel=6366f1" alt="GitHub Streak"/>
 
 </div>
 
