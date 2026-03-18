@@ -5,6 +5,8 @@
 <br/>
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-6366f1?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-iota-nine-97gumluwra.vercel.app)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/shauryalowkeygotaura)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/shauryascales)
 [![GitHub](https://img.shields.io/badge/GitHub-they--call--me--god-black?style=for-the-badge&logo=github)](https://github.com/they-call-me-god)
 
 </div>
@@ -98,6 +100,12 @@ shaur = {
 <div align="center">
 
 ![Visitor Count](https://komarev.com/ghpvc/?username=they-call-me-god&color=6366f1&style=flat-square&label=Profile+Views)
+
+**Connect with me**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-shauryalowkeygotaura-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/shauryalowkeygotaura)
+[![Instagram](https://img.shields.io/badge/Instagram-shauryascales-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/shauryascales)
+[![Portfolio](https://img.shields.io/badge/Portfolio-shaur.dev-6366f1?style=flat-square&logo=vercel&logoColor=white)](https://portfolio-iota-nine-97gumluwra.vercel.app)
 
 *"The best code is the code that writes itself."*
 
