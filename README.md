@@ -75,6 +75,10 @@ shaur = {
 [![abyss-protocol](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=abyss-protocol&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/abyss-protocol)
 [![portfolio](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=portfolio&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/portfolio)
 
+<br/>
+
+[![Live Portfolio](https://img.shields.io/badge/🌐_Live_Portfolio-portfolio--iota--nine--97gumluwra.vercel.app-6366f1?style=for-the-badge&logoColor=white)](https://portfolio-iota-nine-97gumluwra.vercel.app)
+
 </div>
 
 ---
