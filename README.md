@@ -54,7 +54,7 @@ shaur = {
 
 <div align="center">
 
-<img src="https://github-profile-trophy.vercel.app/?username=they-call-me-god&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4&column=4" alt="GitHub Trophies"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=they-call-me-god&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1&count_private=true" alt="GitHub Stats"/>
 
 </div>
 
