@@ -64,6 +64,22 @@ shaur = {
 &nbsp;
 <img height="180em" src="https://streak-stats.demolab.com?user=they-call-me-god&theme=tokyonight&hide_border=true&background=0d1117&ring=6366f1&fire=6366f1&currStreakLabel=6366f1" alt="GitHub Streak"/>
 
+<br/>
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=they-call-me-god&bg_color=0d1117&color=ffffff&line=6366f1&point=ffffff&area=true&hide_border=true" alt="Activity Graph" width="95%"/>
+
+</div>
+
+---
+
+## 📡 Daily Pulse
+
+<div align="center">
+
+<!--PULSE:START-->
+_Pulse initializes on first scheduled run._
+<!--PULSE:END-->
+
 </div>
 
 ---
@@ -74,6 +90,8 @@ shaur = {
 
 [![abyss-protocol](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=abyss-protocol&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/abyss-protocol)
 [![portfolio](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=portfolio&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/portfolio)
+[![philosopher-pipeline](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=philosopher-pipeline&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/philosopher-pipeline)
+[![brand-launchpad](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=brand-launchpad&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/brand-launchpad)
 
 <br/>
 
@@ -105,7 +123,7 @@ shaur = {
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-shauryalowkeygotaura-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/shauryalowkeygotaura)
 [![Instagram](https://img.shields.io/badge/Instagram-shauryascales-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/shauryascales)
-[![Portfolio](https://img.shields.io/badge/Portfolio-shaur.dev-6366f1?style=flat-square&logo=vercel&logoColor=white)](https://portfolio-iota-nine-97gumluwra.vercel.app)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live_Site-6366f1?style=flat-square&logo=vercel&logoColor=white)](https://portfolio-iota-nine-97gumluwra.vercel.app)
 
 *"The best code is the code that writes itself."*
 

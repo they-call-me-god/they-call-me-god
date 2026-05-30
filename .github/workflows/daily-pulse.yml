@@ -1,0 +1,60 @@
+name: Daily Pulse
+
+# Refreshes the "Daily Pulse" block in README once a day and commits it
+# authored with Shaurya's verified email, so the commit counts toward the
+# contribution graph (bot-authored commits do not).
+
+on:
+  schedule:
+    - cron: "30 3 * * *"   # 03:30 UTC daily
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  pulse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update pulse block
+        run: |
+          python3 - <<'PY'
+          import datetime, re, random
+          quotes = [
+              "The best code is the code that writes itself.",
+              "Ship it, then make it learn.",
+              "Automate the boring, amplify the rare.",
+              "Every project should become an autonomous system.",
+              "Make it work, make it think, make it teach itself.",
+              "Small daily commits compound like interest.",
+              "A pipeline you trust is a pipeline you forget.",
+          ]
+          today = datetime.date.today()
+          # deterministic-but-rotating pick so the diff changes each day
+          q = quotes[today.toordinal() % len(quotes)]
+          stamp = today.strftime("%A, %d %b %Y")
+          block = (
+              f"**{stamp}** &nbsp;•&nbsp; Day {today.timetuple().tm_yday} of {today.year}\n\n"
+              f"> _{q}_\n\n"
+              f"![Building](https://img.shields.io/badge/status-building%20autonomous%20systems-6366f1?style=flat-square)"
+          )
+          with open("README.md", encoding="utf-8") as f:
+              md = f.read()
+          md = re.sub(
+              r"<!--PULSE:START-->.*?<!--PULSE:END-->",
+              f"<!--PULSE:START-->\n{block}\n<!--PULSE:END-->",
+              md, flags=re.S,
+          )
+          with open("README.md", "w", encoding="utf-8") as f:
+              f.write(md)
+          PY
+
+      - name: Commit (attributed to Shaurya)
+        run: |
+          git config user.name  "Shaur"
+          git config user.email "shauryavardhan.shandilya@gmail.com"
+          git add README.md
+          git commit -m "chore: daily pulse $(date -u +%F)" || echo "no changes"
+          git push
