@@ -13,7 +13,7 @@
 [![Portfolio](https://img.shields.io/badge/Portfolio-6366f1?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-iota-nine-97gumluwra.vercel.app)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/shauryalowkeygotaura)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/shauryascales)
-[![GitHub](https://img.shields.io/badge/GitHub-they--call--me--god-black?style=for-the-badge&logo=github)](https://github.com/they-call-me-god)
+[![GitHub](https://img.shields.io/badge/GitHub-shauryalowkeygotaura-black?style=for-the-badge&logo=github)](https://github.com/shauryalowkeygotaura)
 
 </div>
 
@@ -69,10 +69,10 @@ shaur = {
 
 | Project | What it does |
 |---|---|
-| **[🧠 portfolio](https://github.com/they-call-me-god/portfolio)** | A portfolio that improves itself — reads its own analytics nightly, rewrites its copy with an LLM, and redeploys. Live A/B tests. `Next.js · PostHog · Vercel Cron` |
-| **[🎬 philosopher-pipeline](https://github.com/they-call-me-god/philosopher-pipeline)** | Autonomous Instagram Reel factory. Cron fires → AI picks a quote → cinematic voiceover + video → auto-posts. No human in the loop. `Python · edge-tts · FFmpeg` |
-| **[🚀 brand-launchpad](https://github.com/they-call-me-god/brand-launchpad)** | One Claude Code command → a full brand launch: positioning, hero line, 30-day calendar, content system. 12 files in one run. `Claude Code Skill` |
-| **[🗡️ abyss-protocol](https://github.com/they-call-me-god/abyss-protocol)** | Procedural terminal dungeon crawler, hand-built roguelike generation from scratch. `Python` |
+| **[🧠 portfolio](https://github.com/shauryalowkeygotaura/portfolio)** | A portfolio that improves itself — reads its own analytics nightly, rewrites its copy with an LLM, and redeploys. Live A/B tests. `Next.js · PostHog · Vercel Cron` |
+| **[🎬 philosopher-pipeline](https://github.com/shauryalowkeygotaura/philosopher-pipeline)** | Autonomous Instagram Reel factory. Cron fires → AI picks a quote → cinematic voiceover + video → auto-posts. No human in the loop. `Python · edge-tts · FFmpeg` |
+| **[🚀 brand-launchpad](https://github.com/shauryalowkeygotaura/brand-launchpad)** | One Claude Code command → a full brand launch: positioning, hero line, 30-day calendar, content system. 12 files in one run. `Claude Code Skill` |
+| **[🗡️ abyss-protocol](https://github.com/shauryalowkeygotaura/abyss-protocol)** | Procedural terminal dungeon crawler, hand-built roguelike generation from scratch. `Python` |
 
 <div align="center">
 
@@ -82,10 +82,10 @@ shaur = {
 
 <div align="center">
 
-[![portfolio](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=portfolio&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/portfolio)
-[![philosopher-pipeline](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=philosopher-pipeline&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/philosopher-pipeline)
-[![brand-launchpad](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=brand-launchpad&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/brand-launchpad)
-[![abyss-protocol](https://github-readme-stats.vercel.app/api/pin/?username=they-call-me-god&repo=abyss-protocol&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/they-call-me-god/abyss-protocol)
+[![portfolio](https://github-readme-stats.vercel.app/api/pin/?username=shauryalowkeygotaura&repo=portfolio&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/shauryalowkeygotaura/portfolio)
+[![philosopher-pipeline](https://github-readme-stats.vercel.app/api/pin/?username=shauryalowkeygotaura&repo=philosopher-pipeline&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/shauryalowkeygotaura/philosopher-pipeline)
+[![brand-launchpad](https://github-readme-stats.vercel.app/api/pin/?username=shauryalowkeygotaura&repo=brand-launchpad&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/shauryalowkeygotaura/brand-launchpad)
+[![abyss-protocol](https://github-readme-stats.vercel.app/api/pin/?username=shauryalowkeygotaura&repo=abyss-protocol&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1)](https://github.com/shauryalowkeygotaura/abyss-protocol)
 
 </div>
 
@@ -95,15 +95,15 @@ shaur = {
 
 <div align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=they-call-me-god&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1&count_private=true" alt="GitHub Stats"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=shauryalowkeygotaura&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&icon_color=6366f1&count_private=true" alt="GitHub Stats"/>
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=they-call-me-god&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&langs_count=6"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=shauryalowkeygotaura&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=6366f1&text_color=ffffff&langs_count=6"/>
 &nbsp;
-<img height="180em" src="https://streak-stats.demolab.com?user=they-call-me-god&theme=tokyonight&hide_border=true&background=0d1117&ring=6366f1&fire=6366f1&currStreakLabel=6366f1" alt="GitHub Streak"/>
+<img height="180em" src="https://streak-stats.demolab.com?user=shauryalowkeygotaura&theme=tokyonight&hide_border=true&background=0d1117&ring=6366f1&fire=6366f1&currStreakLabel=6366f1" alt="GitHub Streak"/>
 
 <br/>
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=they-call-me-god&bg_color=0d1117&color=ffffff&line=6366f1&point=ffffff&area=true&hide_border=true" alt="Activity Graph" width="95%"/>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=shauryalowkeygotaura&bg_color=0d1117&color=ffffff&line=6366f1&point=ffffff&area=true&hide_border=true" alt="Activity Graph" width="95%"/>
 
 </div>
 
@@ -130,9 +130,9 @@ shaur = {
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/they-call-me-god/they-call-me-god/output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/they-call-me-god/they-call-me-god/output/github-contribution-grid-snake.svg">
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/they-call-me-god/they-call-me-god/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/shauryalowkeygotaura/shauryalowkeygotaura/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/shauryalowkeygotaura/shauryalowkeygotaura/output/github-contribution-grid-snake.svg">
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/shauryalowkeygotaura/shauryalowkeygotaura/output/github-contribution-grid-snake-dark.svg">
 </picture>
 
 </div>
@@ -141,7 +141,7 @@ shaur = {
 
 <div align="center">
 
-![Visitor Count](https://komarev.com/ghpvc/?username=they-call-me-god&color=6366f1&style=flat-square&label=Profile+Views)
+![Visitor Count](https://komarev.com/ghpvc/?username=shauryalowkeygotaura&color=6366f1&style=flat-square&label=Profile+Views)
 
 **Let's build something that ships itself.**
 
