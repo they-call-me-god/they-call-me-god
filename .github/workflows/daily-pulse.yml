@@ -1,16 +1,32 @@
 name: Daily Pulse
 
-# Refreshes the "Daily Pulse" block in README once a day and commits it
-# authored with Shaurya's verified email, so the commit counts toward the
-# contribution graph (bot-authored commits do not).
+# Refreshes the "Daily Pulse" block in README and commits it, authored with
+# Shaurya's verified email so the commits count toward the contribution graph
+# (bot-authored commits do not).
+#
+# Variance engine: instead of one identical commit every single day, each day
+# rolls a deterministic pseudo-random commit COUNT (date-seeded, so re-runs are
+# stable) and occasionally rolls ZERO (a blank day). The graph shades each
+# square by commit count, so this produces light/dark squares and the odd gap —
+# a human-looking graph instead of a flat bot line. Commit timing is also
+# jittered, which keeps the history (not the graph) looking organic.
 
 on:
   schedule:
-    - cron: "30 3 * * *"   # 03:30 UTC daily
-  workflow_dispatch: {}
+    - cron: "37 3 * * *"   # ~09:07 IST, jittered further at runtime
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: "Override variance profile for this manual run"
+        required: false
+        default: ""
 
 permissions:
   contents: write
+
+env:
+  # natural | grinder | weekday  — see PROFILES in the python step below.
+  PULSE_PROFILE: "natural"
 
 jobs:
   pulse:
@@ -18,15 +34,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update pulse block
+      - name: Plan the day (count + messages + README block)
         run: |
           python3 - <<'PY'
-          import datetime, re, os
+          import datetime, re, os, random
 
-          # Each day rotates a (focus, quote) pair so the pulse AND the commit
-          # message both describe what the day is actually about. This keeps the
-          # contribution history looking human and intentional, not like a bot
-          # stamping the same "chore: daily pulse" line every 24h.
+          profile = (os.environ.get("INPUT_PROFILE") or os.environ.get("PULSE_PROFILE") or "natural").strip()
+
+          # ---- variance profiles -------------------------------------------
+          # `weights` is the pool the daily commit count is drawn from (0 = a
+          # blank day). `weekend_factor` scales the count down on Sat/Sun.
+          PROFILES = {
+              # normal active dev: ~20% blank days, mostly 1-2, occasional 3-4
+              "natural": dict(weights=[0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 4], weekend_factor=0.5),
+              # grinder: rarely blank, mostly 2-3, regular dark squares
+              "grinder": dict(weights=[1, 1, 2, 2, 2, 3, 3, 4, 4, 5],     weekend_factor=0.8),
+              # weekday warrior: heavier Mon-Fri, light/blank weekends
+              "weekday": dict(weights=[0, 0, 0, 1, 1, 2, 2, 3, 4],         weekend_factor=0.25),
+          }
+          cfg = PROFILES.get(profile, PROFILES["natural"])
+
+          today = datetime.date.today()
+          rng = random.Random(today.toordinal())   # deterministic per calendar day
+
+          n = rng.choice(cfg["weights"])
+          if today.weekday() >= 5:                  # Sat/Sun
+              n = round(n * cfg["weekend_factor"])
+          n = max(0, int(n))
+
+          # ---- rotating theme + verb pools so every message reads differently
           themes = [
               ("voice agents",        "The best code is the code that writes itself."),
               ("self-learning web",   "Ship it, then make it learn."),
@@ -36,16 +72,23 @@ jobs:
               ("client acquisition",  "Small daily commits compound like interest."),
               ("infra & cron",        "A pipeline you trust is a pipeline you forget."),
           ]
-          # Verb pool so the commit subject varies day to day as well.
-          verbs = ["refresh", "tune", "advance", "log", "update", "iterate on", "note"]
+          verbs = ["refresh", "tune", "advance", "log", "update", "iterate on",
+                   "note", "polish", "wire up", "rework", "trim", "extend"]
 
-          today = datetime.date.today()
-          idx = today.toordinal() % len(themes)
-          focus, q = themes[idx]
-          verb = verbs[today.toordinal() % len(verbs)]
+          focus, q = rng.choice(themes)
           stamp = today.strftime("%A, %d %b %Y")
           day_of_year = today.timetuple().tm_yday
 
+          # ---- write outputs ------------------------------------------------
+          # Commit count (0 = skip the whole day).
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env:
+              env.write(f"PULSE_N={n}\n")
+
+          if n == 0:
+              print("Blank day rolled — no commit today.")
+              raise SystemExit(0)
+
+          # Refresh the README pulse block (the one real change of the day).
           block = (
               f"**{stamp}** &nbsp;•&nbsp; Day {day_of_year} of {today.year} "
               f"&nbsp;•&nbsp; focus: {focus}\n\n"
@@ -62,16 +105,38 @@ jobs:
           with open("README.md", "w", encoding="utf-8") as f:
               f.write(md)
 
-          # Hand a varied, meaningful commit subject to the next step.
-          msg = f"docs(pulse): {verb} {focus} — day {day_of_year}"
-          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env:
-              env.write(f"PULSE_MSG={msg}\n")
+          # One varied commit subject per commit we'll make today.
+          msgs = []
+          for _ in range(n):
+              v = rng.choice(verbs)
+              f2, _ = rng.choice(themes)
+              msgs.append(f"docs(pulse): {v} {f2} — day {day_of_year}")
+          with open(".pulse_msgs", "w", encoding="utf-8") as f:
+              f.write("\n".join(msgs) + "\n")
+          print(f"Profile '{profile}': {n} commit(s) planned for {stamp}.")
           PY
+        env:
+          INPUT_PROFILE: ${{ github.event.inputs.profile }}
 
-      - name: Commit (attributed to Shaurya)
+      - name: Commit (attributed to Shaurya, jittered)
+        if: env.PULSE_N != '0'
         run: |
           git config user.name  "Shaur"
           git config user.email "shauryavardhan.shandilya@gmail.com"
+
+          # Random initial delay (0-3h) so commit timestamps wander day to day.
+          sleep $(( RANDOM % 10800 ))
+
+          mapfile -t MSGS < .pulse_msgs
+          rm -f .pulse_msgs
+
           git add README.md
-          git commit -m "${PULSE_MSG:-docs: daily pulse $(date -u +%F)}" || echo "no changes"
+          git commit -m "${MSGS[0]:-docs: daily pulse $(date -u +%F)}" || echo "no readme change"
+
+          # Extra commits for the day (darker square), spaced a little apart.
+          for (( i=1; i<${#MSGS[@]}; i++ )); do
+            sleep $(( RANDOM % 300 + 60 ))
+            git commit --allow-empty -m "${MSGS[i]}"
+          done
+
           git push
