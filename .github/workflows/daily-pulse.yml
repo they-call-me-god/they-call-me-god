@@ -1,23 +1,35 @@
 name: Daily Pulse
 
-# Refreshes the "Daily Pulse" block in README and commits it, authored with
-# Shaurya's verified email so the commits count toward the contribution graph
-# (bot-authored commits do not).
+# Keeps a build journal and refreshes the README "Daily Pulse" block, authored
+# with Shaurya's verified email so the commits count toward the contribution
+# graph (bot-authored commits do not).
 #
-# Variance engine: instead of one identical commit every single day, each day
-# rolls a deterministic pseudo-random commit COUNT (date-seeded, so re-runs are
-# stable) and occasionally rolls ZERO (a blank day). The graph shades each
-# square by commit count, so this produces light/dark squares and the odd gap —
-# a human-looking graph instead of a flat bot line. Commit timing is also
-# jittered, which keeps the history (not the graph) looking organic.
+# Variance engine:
+#   * The day's commit COUNT is a deterministic, date-seeded roll (light/dark
+#     squares + the odd blank day) — not one identical commit every day.
+#   * Those commits are spread across the day via multiple scheduled runs
+#     ("slots"). Each run asks "is this slot one of today's chosen ones?" and
+#     commits at most once, so commit TIMES genuinely vary instead of bursting.
+#   * Every commit is a REAL diff: a timestamped line appended to the build
+#     journal at .pulse/activity.md (plus the README block refresh). No empty
+#     filler commits.
+#
+# IMPORTANT: the cron list below must stay in sync with SLOTS in the python step.
 
 on:
   schedule:
-    - cron: "37 3 * * *"   # ~09:07 IST, jittered further at runtime
+    - cron: "11 2 * * *"
+    - cron: "23 5 * * *"
+    - cron: "47 7 * * *"
+    - cron: "9 10 * * *"
+    - cron: "31 13 * * *"
+    - cron: "5 16 * * *"
+    - cron: "43 18 * * *"
+    - cron: "29 21 * * *"
   workflow_dispatch:
     inputs:
       profile:
-        description: "Override variance profile for this manual run"
+        description: "Override variance profile for this manual run (natural|grinder|weekday)"
         required: false
         default: ""
 
@@ -34,35 +46,54 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Plan the day (count + messages + README block)
+      - name: Decide whether this slot commits
         run: |
           python3 - <<'PY'
-          import datetime, re, os, random
+          import datetime, os, random, pathlib
+
+          # Scheduled UTC time slots — MUST match the cron list above.
+          SLOTS = [(2, 11), (5, 23), (7, 47), (10, 9),
+                   (13, 31), (16, 5), (18, 43), (21, 29)]
 
           profile = (os.environ.get("INPUT_PROFILE") or os.environ.get("PULSE_PROFILE") or "natural").strip()
 
-          # ---- variance profiles -------------------------------------------
-          # `weights` is the pool the daily commit count is drawn from (0 = a
-          # blank day). `weekend_factor` scales the count down on Sat/Sun.
+          # `weights` = pool the daily commit count is drawn from (0 = blank day),
+          # capped at len(SLOTS). `weekend_factor` scales it down Sat/Sun.
           PROFILES = {
-              # normal active dev: ~20% blank days, mostly 1-2, occasional 3-4
               "natural": dict(weights=[0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 4], weekend_factor=0.5),
-              # grinder: rarely blank, mostly 2-3, regular dark squares
               "grinder": dict(weights=[1, 1, 2, 2, 2, 3, 3, 4, 4, 5],     weekend_factor=0.8),
-              # weekday warrior: heavier Mon-Fri, light/blank weekends
               "weekday": dict(weights=[0, 0, 0, 1, 1, 2, 2, 3, 4],         weekend_factor=0.25),
           }
           cfg = PROFILES.get(profile, PROFILES["natural"])
 
-          today = datetime.date.today()
+          now = datetime.datetime.utcnow()
+          today = now.date()
           rng = random.Random(today.toordinal())   # deterministic per calendar day
 
           n = rng.choice(cfg["weights"])
-          if today.weekday() >= 5:                  # Sat/Sun
+          if today.weekday() >= 5:
               n = round(n * cfg["weekend_factor"])
-          n = max(0, int(n))
+          n = max(0, min(int(n), len(SLOTS)))
 
-          # ---- rotating theme + verb pools so every message reads differently
+          chosen = set(rng.sample(range(len(SLOTS)), n)) if n else set()
+
+          # Which slot does this run map to? Pick the nearest scheduled time.
+          slot_times = [now.replace(hour=h, minute=m, second=0, microsecond=0) for h, m in SLOTS]
+          diffs = [abs((now - st).total_seconds()) for st in slot_times]
+          cur = min(range(len(SLOTS)), key=lambda i: diffs[i])
+          within = diffs[cur] <= 75 * 60   # tolerate Actions scheduling lag
+
+          manual = os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"
+          go = manual or (within and cur in chosen)
+
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env:
+              env.write(f"PULSE_GO={'1' if go else '0'}\n")
+
+          if not go:
+              print(f"Slot {cur} not committing today (profile '{profile}', planned slots {sorted(chosen)}).")
+              raise SystemExit(0)
+
+          # ---- this slot commits: build a real diff -------------------------
           themes = [
               ("voice agents",        "The best code is the code that writes itself."),
               ("self-learning web",   "Ship it, then make it learn."),
@@ -75,68 +106,65 @@ jobs:
           verbs = ["refresh", "tune", "advance", "log", "update", "iterate on",
                    "note", "polish", "wire up", "rework", "trim", "extend"]
 
-          focus, q = rng.choice(themes)
-          stamp = today.strftime("%A, %d %b %Y")
+          # Seed message/theme by (day, slot) so each slot reads differently.
+          srng = random.Random(today.toordinal() * 100 + cur)
+          focus, q = srng.choice(themes)
+          verb = srng.choice(verbs)
+          stamp = now.strftime("%Y-%m-%d %H:%M UTC")
           day_of_year = today.timetuple().tm_yday
 
-          # ---- write outputs ------------------------------------------------
-          # Commit count (0 = skip the whole day).
+          # 1) append to the build journal (the real change)
+          log = pathlib.Path(".pulse/activity.md")
+          log.parent.mkdir(exist_ok=True)
+          if not log.exists():
+              log.write_text("# Build journal\n\nAuto-logged focus + intent, one line per working session.\n\n", encoding="utf-8")
+          with log.open("a", encoding="utf-8") as f:
+              f.write(f"- {stamp} — {focus} — _{q}_\n")
+
+          # 2) refresh the README pulse block (skip gracefully if README/markers absent)
+          import re
+          readme = pathlib.Path("README.md")
+          if readme.exists():
+              block = (
+                  f"**{today.strftime('%A, %d %b %Y')}** &nbsp;•&nbsp; Day {day_of_year} of {today.year} "
+                  f"&nbsp;•&nbsp; focus: {focus}\n\n"
+                  f"> _{q}_\n\n"
+                  f"![Building](https://img.shields.io/badge/status-building%20autonomous%20systems-6366f1?style=flat-square)"
+              )
+              md = readme.read_text(encoding="utf-8")
+              md = re.sub(
+                  r"<!--PULSE:START-->.*?<!--PULSE:END-->",
+                  f"<!--PULSE:START-->\n{block}\n<!--PULSE:END-->",
+                  md, flags=re.S,
+              )
+              readme.write_text(md, encoding="utf-8")
+
           with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env:
-              env.write(f"PULSE_N={n}\n")
-
-          if n == 0:
-              print("Blank day rolled — no commit today.")
-              raise SystemExit(0)
-
-          # Refresh the README pulse block (the one real change of the day).
-          block = (
-              f"**{stamp}** &nbsp;•&nbsp; Day {day_of_year} of {today.year} "
-              f"&nbsp;•&nbsp; focus: {focus}\n\n"
-              f"> _{q}_\n\n"
-              f"![Building](https://img.shields.io/badge/status-building%20autonomous%20systems-6366f1?style=flat-square)"
-          )
-          with open("README.md", encoding="utf-8") as f:
-              md = f.read()
-          md = re.sub(
-              r"<!--PULSE:START-->.*?<!--PULSE:END-->",
-              f"<!--PULSE:START-->\n{block}\n<!--PULSE:END-->",
-              md, flags=re.S,
-          )
-          with open("README.md", "w", encoding="utf-8") as f:
-              f.write(md)
-
-          # One varied commit subject per commit we'll make today.
-          msgs = []
-          for _ in range(n):
-              v = rng.choice(verbs)
-              f2, _ = rng.choice(themes)
-              msgs.append(f"docs(pulse): {v} {f2} — day {day_of_year}")
-          with open(".pulse_msgs", "w", encoding="utf-8") as f:
-              f.write("\n".join(msgs) + "\n")
-          print(f"Profile '{profile}': {n} commit(s) planned for {stamp}.")
+              env.write(f"PULSE_MSG=docs(pulse): {verb} {focus} — day {day_of_year}\n")
+          print(f"Slot {cur} committing: {verb} {focus}")
           PY
         env:
           INPUT_PROFILE: ${{ github.event.inputs.profile }}
 
       - name: Commit (attributed to Shaurya, jittered)
-        if: env.PULSE_N != '0'
+        if: env.PULSE_GO == '1'
         run: |
           git config user.name  "Shaur"
           git config user.email "shauryavardhan.shandilya@gmail.com"
 
-          # Random initial delay (0-3h) so commit timestamps wander day to day.
-          sleep $(( RANDOM % 10800 ))
+          # Small in-slot jitter (0-20 min) so the timestamp isn't exactly on the cron tick.
+          sleep $(( RANDOM % 1200 ))
 
-          mapfile -t MSGS < .pulse_msgs
-          rm -f .pulse_msgs
+          git add .pulse/activity.md
+          [ -f README.md ] && git add README.md
+          git commit -m "${PULSE_MSG:-docs: daily pulse $(date -u +%F)}" || { echo "nothing to commit"; exit 0; }
 
-          git add README.md
-          git commit -m "${MSGS[0]:-docs: daily pulse $(date -u +%F)}" || echo "no readme change"
-
-          # Extra commits for the day (darker square), spaced a little apart.
-          for (( i=1; i<${#MSGS[@]}; i++ )); do
-            sleep $(( RANDOM % 300 + 60 ))
-            git commit --allow-empty -m "${MSGS[i]}"
+          # Another slot may have pushed earlier today; rebase then push, retrying
+          # the rebase+push cycle if the remote moved again between the two.
+          branch="$(git rev-parse --abbrev-ref HEAD)"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$branch" && git push && exit 0
+            echo "push attempt $attempt failed; retrying"
+            sleep 5
           done
-
-          git push
+          echo "could not push after retries; dropping this slot's commit"; exit 0
